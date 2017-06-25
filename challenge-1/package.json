@@ -1,0 +1,34 @@
+{
+  "name": "challenge-1",
+  "version": "0.1.0",
+  "devDependencies": {
+    "browser-sync": "^2.18.12",
+    "browserify": "^13.1.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "gulp": "^3.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^3.1.0"
+  },
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-sass": "^1.1.0",
+    "gulp": "^3.9.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angusm/chaffers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angusm/chaffers/issues"
+  },
+  "homepage": "https://github.com/angusm/chaffers#readme",
+  "description": ""
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="todo">
+    <head>
+        <meta charset="UTF-8">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <title>Angus MacDonald - Challenge 3</title>
+        <link rel="stylesheet" type="text/css" href="css/challenge-3.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="col-md-12">todos</h1>
+            <div class="row"
+                 ng-controller="todoController as ctrl"
+                 ng-init="
+                    filter = ctrl.getClass().getAllFilterValue();
+                    items = [];
+                    itemToAdd = '';
+                    ">
+                <div class="col-md-12 input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary"
+                                ng-click="itemToAdd = ctrl.getClass().addItem(itemToAdd, items)">
+                            Add
+                        </button>
+                    </span>
+                    <input class="form-control"
+                           type="text"
+                           ng-model="itemToAdd"
+                           on-enter-key="itemToAdd = ctrl.getClass().addItem(itemToAdd, items)">
+                </div>
+                <ul class="list-group col-md-12 input-group">
+                    <li class="list-item list-group-item"
+                        ng-repeat="item in ctrl.getClass().getFilteredItems(items, filter)"
+                        ng-class="{'done': item.active}"
+                        ng-click="item.active = !item.active">
+                        <input type="checkbox"
+                               ng-model="item.active"
+                               ng-click="item.active = !item.active">
+                        <span ng-bind="item.title"></span>
+                    </li>
+                </ul>
+                <div class="row">
+                    <div class="col-md-6">
+                        <select ng-model="filter">
+                            <option ng-value="ctrl.getClass().getAllFilterValue()">
+                                all
+                            </option>
+                            <option ng-value="ctrl.getClass().getActiveFilterValue()">
+                                active
+                            </option>
+                            <option ng-value="ctrl.getClass().getCompleteFilterValue()">
+                                complete
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 clear-button-container">
+                        <button class="btn btn-default"
+                                ng-click="items = ctrl.getClass().getActiveItems(items)"
+                                ng-disabled="!ctrl.getClass().getCompleteItems(items).length">
+                            Clear Complete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+        <script src="js/main.min.js"></script>
+    </body>
+</html>
