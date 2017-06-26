@@ -1,0 +1,28 @@
+h1 {
+  text-align: center;
+}
+
+.list-item {
+  align-items: center;
+  cursor: pointer;
+  display: flex !important;
+  font-weight: bold;
+
+  input[type=checkbox], span {
+    display: inline-block;
+    margin: 0;
+  }
+
+  input[type=checkbox] {
+    margin-right: 5px;
+  }
+}
+
+.done {
+  color: dimgray;
+  text-decoration: line-through;
+}
+
+.clear-button-container {
+  text-align: right;
+}

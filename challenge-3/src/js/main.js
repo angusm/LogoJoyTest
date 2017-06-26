@@ -4,14 +4,17 @@ let todoModule = angular.module('todo', []);
  * Models a to-do list item.
  */
 class Item {
+    /**
+     * @param {string} title Title for the to-do item.
+     */
     constructor(title) {
         this.title = title;
-        this.active = false;
+        this.active = true;
     }
 }
 
 /** @enum {string} Magic filter values. */
-const FilterValues = {
+const FilterValue = {
     ALL: 'all',
     ACTIVE: 'active',
     COMPLETE: 'complete',
@@ -19,12 +22,12 @@ const FilterValues = {
 
 /**
  * Maps filter types to filter functions.
- * @const {Map<FilterValues, function(Array<Item>): Array<Item>>}
+ * @const {Map<FilterValue, function(Array<Item>): Array<Item>>}
  */
 const filterFunctions = new Map([
-    [FilterValues.ALL, (item) => true],
-    [FilterValues.ACTIVE, (item) => !item.active],
-    [FilterValues.COMPLETE, (item) => item.active],
+    [FilterValue.ALL, (item) => true],
+    [FilterValue.ACTIVE, (item) => item.active],
+    [FilterValue.COMPLETE, (item) => !item.active],
 ]);
 
 class TodoController {
@@ -41,7 +44,7 @@ class TodoController {
      * @export
      */
     static getAllFilterValue() {
-        return FilterValues.ALL;
+        return FilterValue.ALL;
     }
 
     /**
@@ -49,7 +52,7 @@ class TodoController {
      * @export
      */
     static getActiveFilterValue() {
-        return FilterValues.ACTIVE;
+        return FilterValue.ACTIVE;
     }
 
     /**
@@ -57,7 +60,7 @@ class TodoController {
      * @export
      */
     static getCompleteFilterValue() {
-        return FilterValues.COMPLETE;
+        return FilterValue.COMPLETE;
     }
 
     /**
@@ -67,7 +70,7 @@ class TodoController {
      * @export
      */
     static getActiveItems(items) {
-        return items.filter(filterFunctions.get(FilterValues.ACTIVE));
+        return items.filter(filterFunctions.get(FilterValue.ACTIVE));
     }
 
     /**
@@ -77,7 +80,7 @@ class TodoController {
      * @export
      */
     static getCompleteItems(items) {
-        return items.filter(filterFunctions.get(FilterValues.COMPLETE));
+        return items.filter(filterFunctions.get(FilterValue.COMPLETE));
     }
 
     /**
