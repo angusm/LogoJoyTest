@@ -9,7 +9,7 @@ class Item {
      */
     constructor(title) {
         this.title = title;
-        this.active = true;
+        this.complete = false;
     }
 }
 
@@ -26,8 +26,8 @@ const FilterValue = {
  */
 const filterFunctions = new Map([
     [FilterValue.ALL, (item) => true],
-    [FilterValue.ACTIVE, (item) => item.active],
-    [FilterValue.COMPLETE, (item) => !item.active],
+    [FilterValue.ACTIVE, (item) => !item.complete],
+    [FilterValue.COMPLETE, (item) => item.complete],
 ]);
 
 class TodoController {

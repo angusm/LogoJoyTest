@@ -6,7 +6,6 @@
         <title>Angus MacDonald - Challenge 3</title>
         <link rel="stylesheet" type="text/css" href="css/challenge-3.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <script src="js/main.js"></script>
     </head>
     <body>
         <div class="container">
@@ -30,14 +29,14 @@
                            ng-model="itemToAdd"
                            on-enter-key="itemToAdd = ctrl.getClass().addItem(itemToAdd, items)">
                 </div>
-                <ul class="list-group col-md-12 input-group">
+                <ul class="list-group col-md-12">
                     <li class="list-item list-group-item"
                         ng-repeat="item in ctrl.getClass().getFilteredItems(items, filter)"
-                        ng-class="{'done': !item.active}"
-                        ng-click="item.active = !item.active">
+                        ng-class="{'done': item.complete}"
+                        ng-click="item.complete = !item.complete">
                         <input type="checkbox"
-                               ng-model="item.active"
-                               ng-click="item.active = !item.active">
+                               ng-model="item.complete"
+                               ng-click="item.complete = !item.complete">
                         <span ng-bind="item.title"></span>
                     </li>
                 </ul>

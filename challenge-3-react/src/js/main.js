@@ -48,11 +48,16 @@ class TodoAddCta extends React.Component {
         };
     }
 
+    addItem() {
+        this.props.addItem(this.state.inputValue);
+        this.state.inputValue = '';
+    }
+
     /**
      * Adds an item in response to a click event.
      */
     addItemOnClick() {
-        this.props.addItem(this.state.inputValue);
+        this.addItem();
     }
 
     /**
@@ -62,7 +67,7 @@ class TodoAddCta extends React.Component {
         if (event.key !== 'Enter') {
             return;
         }
-        this.props.addItem(this.state.inputValue);
+        this.addItem();
     }
 
     /**
@@ -132,7 +137,7 @@ class TodoList extends React.Component {
                 </li>)
         });
         return (
-            <ul className="list-group col-md-12 input-group">
+            <ul className="list-group col-md-12">
                 {items}
             </ul>
         )
@@ -202,6 +207,9 @@ class TodoApp extends React.Component {
      * @param {string} itemName Item to add to the list of items.
      */
     addItem(itemName) {
+        if (!itemName) {
+            return;
+        }
         this.setState({
             items: [...this.state.items, new Item(itemName)],
         });
